@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	
+<div class="container">
+  <div class="row mx-auto">
+    {% for  product in prds %}
+	<div class="card mx-auto" style="width: 18rem;">
+  <img class="card-img-top" src= "{{ product.image.url }}" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-title">{{ product.name }}</p>
+    <p class="card-text"><b>Rs. {{ product.price }}</b></p>
+    
+    <form action="/" method="POST" class="btn-block">
+	{% csrf_token %}
+	<input hidden type="text" name='product' value='{{product.id}}'>
+	<input type="submit" class="float-right btn btn-dark  form-control"
+		value="Add To Cart">
+	</form>
+    
+  </div>
+
+</div>
+{% endfor %}
+
+  </div>
+</div>
+
+
+{% endblock %}

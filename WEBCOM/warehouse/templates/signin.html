@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    
+    <div class="p-4 m-4">
+
+        
+        <div class="col-lg-5 rounded mx-auto border pt-4">
+            <div class="text-center col">
+            	<h4 style="background-color:grey;padding: 10px 10px 10px 10px;">Sign-In</h4>
+            </div>
+            <form action="/signin" method="POST" style="margin-top: 20px">
+                {% csrf_token %}
+                <!-- name -->
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" name="email" required 
+                    id="" value="{{values.email}}" class="form-control form-control-sm"
+                    >
+                </div>
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" 
+                    name="password" required
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
+                </div>
+
+                <hr>
+                <div class="form-group" style="background-color: #17a2b8" >
+                    <input class="btn btn-sm btn-info" type="submit" value="Sing In">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

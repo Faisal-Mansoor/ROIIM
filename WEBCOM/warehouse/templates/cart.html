@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row mx-auto">
+  	<script type="text/javascript">
+  		var total = 0;
+  	</script>
+    {% for  product in prods %}
+	<div class="card mx-auto" style="width: 18rem;">
+  <img class="card-img-top" src= "{{ product.image.url }}" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-title">{{ product.name }}</p>
+    <p class="card-text" id = "price">Rs. {{ product.price }}</p>
+    <script type="text/javascript">
+    	
+		total += {{ product.price }}
+	</script>
+    
+  </div>
+
+</div>
+{% endfor %}
+	<form action="/checkout" method="POST" class="btn-block">
+	{% csrf_token %}
+	<input hidden id="paysafe" type="text" name='product' value=1232141>
+	<input id="##" type="submit" class="float-right btn btn-dark  form-control"
+		value="Pay">
+	</form>
+	
+
+  </div>
+	<script type="text/javascript">
+		document.getElementById("paysafe").value = total;
+		document.getElementById("##").value = "Pay : "+total
+	</script>
+</div>
+
+
+
+{% endblock %}
